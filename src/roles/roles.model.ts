@@ -1,12 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { BelongsToMany, Column, DataType, Model, Table } from 'sequelize-typescript';
+import { User } from 'src/users/users.model';
+import { UserRoles } from './user-role.model';
 
-interface UserCreationAttr {
+interface RoleCreationAttr {
   role: string;
 }
 
 @Table({ tableName: 'roles' })
-export class Role extends Model<Role, UserCreationAttr> {
+export class Role extends Model<Role, RoleCreationAttr> {
   @ApiProperty({ example: '1', description: 'Unique indentificator' })
   @Column({
     type: DataType.INTEGER,
@@ -19,4 +21,7 @@ export class Role extends Model<Role, UserCreationAttr> {
   @ApiProperty({ example: 'ADMIN', description: 'User`s role' })
   @Column({ type: DataType.STRING, unique: true, allowNull: false })
   role: string;
+
+  @BelongsToMany(() => User, () => UserRoles)
+  users: User[];
 }
