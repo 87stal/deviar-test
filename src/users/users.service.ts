@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { RolesService } from 'src/roles/roles.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 import { User } from './users.model';
 
@@ -25,11 +26,18 @@ export class UsersService {
     return users;
   }
 
-  async getUserByName(name: string) {
+  async getUserByName(name) {
     const user = await this.userRepository.findOne({
       where: { name },
       include: { all: true },
     });
     return user;
+  }
+
+  async userUpdate(userId, dto: UpdateUserDto) {
+    const updateUser = await this.userRepository.update(dto, {
+      where: { id: userId },
+    });
+    return updateUser;
   }
 }

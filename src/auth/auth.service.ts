@@ -25,7 +25,7 @@ export class AuthService {
     const candidate = await this.userService.getUserByName(userDto.name);
     if (candidate) {
       throw new HttpException(
-        'User with same name already exist',
+        'User with the same name already exist',
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   private async generateToken(user: User) {
-    const payload = { name: user.name, id: user.id, roles: user.roles };
+    const payload = { name: user.name, id: user.id };
     return {
       token: this.jwtService.sign(payload),
     };
