@@ -29,8 +29,6 @@ export class JwtUserGuard implements CanActivate {
 
       const user = this.jwtService.verify(token);
 
-  
-
       return user.id == userToChange;
     } catch (e) {
       throw new UnauthorizedException({
