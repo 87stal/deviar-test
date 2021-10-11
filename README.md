@@ -12,7 +12,9 @@ npm i
 ```
 4. Start app
 
+```javascript
 npm start
+```
 
 5. App will start on http://localhost:3000/api/ 
 
