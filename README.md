@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# deviar-test
-=======
 #### Getting Started
 
 1. Make sure you have NodeJS and npm installed.
@@ -23,4 +20,3 @@ npm start
 
 6. Documentation for project you will find on http://localhost:3000/api/docs/#/
 
->>>>>>> dev
